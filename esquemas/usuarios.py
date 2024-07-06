@@ -5,11 +5,7 @@ class EsquemaUsuario(marshmallow.Schema):
     class Meta:
         fields = ('id', 'nombre', 'clave', 'esAdministrador', 'imagen')
 
-    @staticmethod
-    def jsonsify(datos):
-        return EsquemaUsuario().jsonsify(datos)      
-    
-    @staticmethod
-    def jsonsifyArray(datos):
+def jsonify(datos, many = False):
+    if many:
         return EsquemaUsuario(many = True).dump(datos)
-        
+    return EsquemaUsuario().jsonify(datos) 

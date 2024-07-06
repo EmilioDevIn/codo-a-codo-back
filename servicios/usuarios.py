@@ -2,7 +2,7 @@ from modelos.usuarios import Usuarios
 from aplicacion import baseDatos
 
 class ServicioUsuario():
-    
+      
     @staticmethod
     def crear(datos):
         usuario = Usuarios(
@@ -19,9 +19,9 @@ class ServicioUsuario():
     
     @staticmethod
     def leer():
-        usuario = Usuarios.query.all()
+        usuarios = Usuarios.query.all()
         
-        return usuario
+        return usuarios
     
     @staticmethod
     def modificar(id, datos):
@@ -31,7 +31,7 @@ class ServicioUsuario():
         usuario.clave = datos["clave"]
         usuario.esAdministrador = datos["esAdministrador"]
         usuario.imagen = datos["imagen"]
-        
+       
         baseDatos.session.commit()
         
         return usuario

@@ -7,5 +7,5 @@ class EsquemaProducto(marshmallow.Schema):
         
 def jsonify(datos, many = False):
     if many:
-        return EsquemaProducto(many).dump(datos)
+        return EsquemaProducto(many = True).dump(datos)
     return EsquemaProducto().jsonify(datos)
