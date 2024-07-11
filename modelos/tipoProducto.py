@@ -1,4 +1,4 @@
-from aplicacion import baseDatos
+from aplicacion import baseDatos, aplicacion
 
 class ModeloTipoProducto(baseDatos.Model):
     __tablename__ = "tipos"
@@ -8,4 +8,5 @@ class ModeloTipoProducto(baseDatos.Model):
     def __init__(self, nombre):
         self.nombre = nombre
     
-    
+with aplicacion.app_context():
+    baseDatos.create_all()

@@ -1,4 +1,4 @@
-from aplicacion import baseDatos
+from aplicacion import baseDatos, aplicacion
 
 class ModeloProducto(baseDatos.Model):
     __tablename__ = "productos"
@@ -17,3 +17,6 @@ class ModeloProducto(baseDatos.Model):
         self.inventario = inventario
         self.imagen = imagen
         self.tipo_id = tipoId
+        
+with aplicacion.app_context():
+    baseDatos.create_all()
