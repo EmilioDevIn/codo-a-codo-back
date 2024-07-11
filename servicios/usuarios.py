@@ -1,16 +1,17 @@
-from modelos.usuarios import Usuarios
+from modelos.usuario import ModeloUsuario
 from aplicacion import baseDatos
 
 class ServicioUsuario():
+
       
     @staticmethod
     def crear(datos):
-        usuario = Usuarios(
+        usuario = ModeloUsuario(
             datos["nombre"],
             datos["clave"],
             datos["esAdministrador"],
             datos["imagen"]
-        )
+        )  
         
         baseDatos.session.add(usuario)
         baseDatos.session.commit()
@@ -19,13 +20,13 @@ class ServicioUsuario():
     
     @staticmethod
     def leer():
-        usuarios = Usuarios.query.all()
+        usuarios = ModeloUsuario.query.all()
         
         return usuarios
     
     @staticmethod
     def modificar(id, datos):
-        usuario = Usuarios.query.get(id)
+        usuario = ModeloUsuario.query.get(id)
         
         usuario.nombre = datos["nombre"]
         usuario.clave = datos["clave"]
@@ -38,7 +39,7 @@ class ServicioUsuario():
 
     @staticmethod
     def eliminar(id):
-        usuario = Usuarios.query.get(id)
+        usuario = ModeloUsuario.query.get(id)
         
         baseDatos.session.delete(usuario)
         baseDatos.session.commit()

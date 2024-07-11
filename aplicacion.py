@@ -17,6 +17,7 @@ marshmallow = Marshmallow(aplicacion)
 
 from controladores.productos import *
 from controladores.usuarios import *
+from controladores.sesiones import *
 
 if __name__=='__main__':  
     aplicacion.run(debug = True, port = 5000)

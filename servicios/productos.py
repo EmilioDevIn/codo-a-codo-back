@@ -1,15 +1,18 @@
-from modelos.productos import Productos
+from modelos.tipoProducto import ModeloTipoProducto
+from modelos.producto import ModeloProducto
+
 from aplicacion import baseDatos
 
 class ServicioProducto():
     
     @staticmethod
     def crear(datos):
-        producto = Productos(
+        producto = ModeloProducto(
             datos["nombre"],
             datos["descripcion"],
             datos["precio"],
             datos["inventario"],
+            datos["tipoId"],
             datos["imagen"]
         )
         
@@ -20,18 +23,19 @@ class ServicioProducto():
     
     @staticmethod
     def leer():
-        productos = Productos.query.all()
-        
+        productos = ModeloProducto.query.all()
+
         return productos
     
     @staticmethod
     def modificar(id, datos):
-        producto = Productos.query.get(id)
+        producto = ModeloProducto.query.get(id)
         
         producto.nombre = datos["nombre"]
         producto.precio = datos["precio"]
         producto.inventario = datos["inventario"]
         producto.imagen = datos["imagen"]
+        producto.tipo_id = datos["tipoId"]
         
         baseDatos.session.commit()
         
@@ -39,7 +43,7 @@ class ServicioProducto():
 
     @staticmethod
     def eliminar(id):
-        producto = Productos.query.get(id)
+        producto = ModeloProducto.query.get(id)
         
         baseDatos.session.delete(producto)
         baseDatos.session.commit()

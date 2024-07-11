@@ -1,6 +1,7 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify as j
 
 from aplicacion import aplicacion
+from servicios.tipoProducto import ServicioTipoProducto
 from servicios.productos import ServicioProducto
 from esquemas.productos import jsonify
 
@@ -14,7 +15,21 @@ def crear():
 @productos.route('/leer', methods = ['GET'])
 def leer():
     productos = ServicioProducto.leer()
-    return jsonify(productos, many = True)
+    productosJson = []
+        
+    for producto in productos:
+        productosJson.append({
+            "id": producto.id,
+            "nombre": producto.nombre,
+            "descripcion": producto.descripcion,
+            "precio": producto.precio,
+            "inventario": producto.inventario,
+            "imagen": producto.imagen
+            } | {
+            "tipo": (ServicioTipoProducto.obtener(producto.tipo_id).nombre)}
+        )
+        
+    return productosJson        
 
 @productos.route('/modificar/<id>', methods=['PUT'])
 def modificar(id):
