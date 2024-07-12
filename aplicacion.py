@@ -7,7 +7,7 @@ URI = 'mysql+pymysql://user:123456@localhost/proyecto-python'
 
 aplicacion = Flask(__name__)
 
-CORS(aplicacion)
+CORS(aplicacion, origins = ["http://127.0.0.1:5502"])
 
 aplicacion.config['SQLALCHEMY_DATABASE_URI'] = URI
 aplicacion.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # None

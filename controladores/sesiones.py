@@ -10,7 +10,7 @@ sesiones = Blueprint("sesiones", __name__)
 def iniciar():
     nuevaSesion = ServicioSesion.iniciar(request.get_json())
     
-    return nuevaSesion.codigo_cliente
+    return jsonify(nuevaSesion)
 
 @sesiones.route("/leer", methods = ["GET"])
 def leer():

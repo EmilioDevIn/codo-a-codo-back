@@ -34,4 +34,9 @@ def eliminar(id):
     usuarioEliminado = ServicioUsuario.eliminar(id)
     return jsonify(usuarioEliminado)
 
+@usuarios.route("/obtener/<id>", methods = ["GET"])
+def obtener(id):
+    usuario = ServicioUsuario.obtener(id)
+    return jsonify(usuario)
+
 aplicacion.register_blueprint(usuarios, url_prefix="/usuarios")

@@ -24,7 +24,8 @@ def leer():
             "descripcion": producto.descripcion,
             "precio": producto.precio,
             "inventario": producto.inventario,
-            "imagen": producto.imagen
+            "imagen": producto.imagen,
+            "tipoId": producto.tipo_id
             } | {
             "tipo": (ServicioTipoProducto.obtener(producto.tipo_id).nombre)}
         )

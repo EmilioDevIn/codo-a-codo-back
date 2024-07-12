@@ -3,7 +3,10 @@ from aplicacion import baseDatos
 
 class ServicioUsuario():
 
-      
+    @staticmethod
+    def obtener(id):
+        return ModeloUsuario.query.get(id)
+
     @staticmethod
     def crear(datos):
         usuario = ModeloUsuario(
